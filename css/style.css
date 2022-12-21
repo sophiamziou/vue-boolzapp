@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    border: 1px solid black;
 }
 
 #bg_body{
@@ -14,4 +15,19 @@
     height: 90vh;
     width: 80vw;
     margin: 5vh 0;
+}
+
+.h_50{
+    background-color: white;
+    height: 50px;
+}
+
+.chat{
+    background-color: peachpuff;
+    height: calc(100% - 100px);
+}
+
+.chat-list{
+    background-color: pink;
+    height: calc(100% - 150px);
 }
