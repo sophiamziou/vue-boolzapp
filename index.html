@@ -12,96 +12,114 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body id="bg_body">
-    <div class="container-fluid d-flex justify-content-center">
-        <div class="row box">
-            <!-- chat list section -->
-            <div class="col-4 bg-white">
-                <!-- user info -->
-                <div class="row d-flex justify-content-between bg_lg h_50">
-                    <div class="col-4">
-                        <div class="content">
-                            <img src="./img/avatar_1.jpg" alt="contact">
-                            <div class="info">
-                                <b>Sophia</b>
+    <div id="app">
+        <div class="container-fluid d-flex justify-content-center">
+            <div class="row box">
+                <!-- chat list section -->
+                <div class="col-4 bg-white">
+                    <!-- user info -->
+                    <div class="row d-flex justify-content-between bg_lg h_50">
+                        <div class="col-4">
+                            <div class="content">
+                                <img src="./img/avatar_1.jpg" alt="contact">
+                                <div class="info">
+                                    <b>Sophia</b>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 d-flex p-2">
+                            <div class="iconsfont w-100">
+                                <i class="fas fa-circle-notch"></i>
+                                <i class="fas fa-message"></i>
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="col-4 d-flex p-2">
-                        <div class="iconsfont w-100">
-                            <i class="fas fa-circle-notch"></i>
-                            <i class="fas fa-message"></i>
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- desktop notification option -->
-                <div class="row">
-                    <div class="col bg_sky p-2">
-                        <div class="content">
-                            <div class="bell">
-                                <i class="fas fa-bell-slash"></i>
-                            </div>
-                            <div class="info">
-                                <span>Ricevi notifiche di nuovi messaggi</span>
-                                <a class="text-secondary">Attiva notifiche desktop</a>
+                    <!-- desktop notification option -->
+                    <div class="row">
+                        <div class="col bg_sky p-2">
+                            <div class="content">
+                                <div class="bell">
+                                    <i class="fas fa-bell-slash"></i>
+                                </div>
+                                <div class="info">
+                                    <span>Ricevi notifiche di nuovi messaggi</span>
+                                    <a class="text-secondary">Attiva notifiche desktop</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- searchbar for contacts -->
-                <div class="row">
-                    <div class="col p-2 bg_lg">
-                        <input type="search" class="form-control" placeholder="Cerca o inizia una nuova chat" aria-label="Search">
+                    <!-- searchbar for contacts -->
+                    <div class="row">
+                        <div class="col p-2 bg_lg">
+                            <input type="search" class="form-control" placeholder="Cerca o inizia una nuova chat" aria-label="Search">
+                        </div>
+                    </div>
+                    <!-- list of chats -->
+                    <div class="row chat-list">
+                        <div class="col p-0">
+                            <div class="chat-item" v-for="(object, index) in contacts" @click="changeChat(index)">
+                                <img :src="object.avatar" alt="contact">
+                                <div class="chat-info">
+                                    <span>{{object.name}}</span>
+                                    <div class="text-secondary">{{object.messages[object.messages.length - 1].message}}</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- list of chats -->
-                <div class="row chat-list">
-                    <div class="col"></div>
+                <!-- messages chat section  -->
+                <div class="col-8 bg-primary">
+                    <!-- info contact -->
+                    <div class="row d-flex justify-content-between bg_lg h_50">
+                        <div class="col-8">
+                            <div class="content">
+                                <img src="./img/avatar_1.jpg" alt="contact">
+                                <div class="info">
+                                    <span>Alessio</span>
+                                    <div class="text-secondary">Ultimo accesso oggi alle 18:30</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2 d-flex">
+                            <div class="iconsfont w-100">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <i class="fa-solid fa-paperclip"></i>
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- messages list -->
+                    <div class="row chat">
+                        <div class="col">
+                            <div class="msg-list p-5">
+                                <div class="msg" v-bind:class="(contacts[activeChat].messages.status == sent) ? 'sent' : ''" v-for="obj in contacts[activeChat].messages">
+                                    <span>{{obj.message}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- input messages -->
+                    <div class="row h_50 bg_input">
+                        <div class="col-1 position-relative">
+                            <div class="center text-secondary iconsfont">
+                                <i class="fa-regular fa-face-smile"></i>
+                            </div>
+                        </div>
+                        <div class="col-10 position-relative">
+                            <input type="search" class="form-control center" placeholder="Scrivi un messaggio" aria-label="Search">
+                        </div>
+                        <div class="col-1 position-relative">
+                            <div class="center iconsfont">
+                                <i class="fa-solid fa-microphone"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- messages chat section  -->
-            <div class="col-8 bg-primary">
-                <!-- info contact -->
-                <div class="row d-flex justify-content-between bg_lg h_50">
-                    <div class="col-8">
-                        <div class="content">
-                            <img src="./img/avatar_1.jpg" alt="contact">
-                            <div class="info">
-                                <span>Alessio</span>
-                                <div class="text-secondary">Ultimo accesso oggi alle 18:30</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-2 d-flex">
-                        <div class="iconsfont w-100">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <i class="fa-solid fa-paperclip"></i>
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- messages list -->
-                <div class="row chat">
-                    <div class="col"></div>
-                </div>
-                <!-- input messages -->
-                <div class="row h_50 bg_input">
-                    <div class="col-1 position-relative">
-                        <div class="center text-secondary iconsfont">
-                            <i class="fa-regular fa-face-smile"></i>
-                        </div>
-                    </div>
-                    <div class="col-10 position-relative">
-                        <input type="search" class="form-control center" placeholder="Scrivi un messaggio" aria-label="Search">
-                    </div>
-                    <div class="col-1 position-relative">
-                        <div class="center iconsfont">
-                            <i class="fa-solid fa-microphone"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div>    
     </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>

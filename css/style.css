@@ -23,12 +23,34 @@
 
 .chat{
     background-image: url(../img/mine.jpg);
-    height: calc(100% - 100px);
+    height: 630px;
+    overflow: scroll;
 }
 
 .chat-list{
-    background-color: pink;
+    height: 550px;
+    overflow: scroll;
 }
+
+.chat-item{
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    padding-left: 20px;
+    font-size: 12px;
+    border-bottom: 1px solid rgb(225, 223, 223);
+}
+
+.chat-item:hover{
+    background-color: rgb(225, 223, 223);
+}
+
+.chat-item:active{
+    background-color: rgb(211, 211, 211);
+}
+
 
 .content{
     padding: 7px 0;
@@ -98,4 +120,25 @@ img{
 .iconsfont i:hover{
     color: rgb(1, 101, 91);
     cursor: pointer;
+}
+
+.msg-list{
+    display: flex;
+    flex-direction: column;
+}
+
+.msg{
+    background-color: white;
+    min-height: 50px;
+    width: 250px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.sent{
+    background-color: lightgreen;
+    align-self: flex-end;
 }
