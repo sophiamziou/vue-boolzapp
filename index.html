@@ -52,19 +52,21 @@
                     <!-- searchbar for contacts -->
                     <div class="row">
                         <div class="col p-2 bg_lg">
-                            <input type="search" class="form-control" placeholder="Cerca o inizia una nuova chat" aria-label="Search">
+                            <input type="search" class="form-control" placeholder="Cerca o inizia una nuova chat" aria-label="Search" v-model="nameFilter" @keyup="searchName()">
                         </div>
                     </div>
                     <!-- list of chats -->
                     <div class="row chat-list">
                         <div class="col p-0">
-                            <div class="chat-item" v-for="(object, index) in contacts" @click="changeChat(index)">
-                                <img :src="object.avatar" alt="contact">
-                                <div class="chat-info">
-                                    <span>{{object.name}}</span>
-                                    <div class="text-secondary">{{object.messages[object.messages.length - 1].message}}</div>
+                            <div v-for="(object, index) in contacts" @click="changeChat(index)">
+                                <div class="chat-item" v-if="object.visible">
+                                    <img :src="object.avatar" alt="contact">
+                                    <div class="chat-info">
+                                        <span>{{object.name}}</span>
+                                        <div class="text-secondary">{{object.messages[object.messages.length - 1].message}}</div>
+                                    </div>
                                 </div>
-                            </div>
+                            </div>    
                         </div>
                     </div>
                 </div>

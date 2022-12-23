@@ -5,6 +5,7 @@ const {
 createApp({
     data(){
         return{
+            nameFilter: '',
             timereply: null,
             newMsg: '',
             activeChat: 0,
@@ -205,5 +206,15 @@ createApp({
                 this.addReply(index)
             }, 1000);
         },
-    }
+        searchName(){
+            this.contacts.forEach(element => {
+                if(element.name.toLowerCase().includes(this.nameFilter.toLowerCase())){
+                    element.visible = true
+                }
+                else{
+                    element.visible = false
+                }  
+            });
+        },
+    },
 }).mount('#app')
