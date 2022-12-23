@@ -45,6 +45,7 @@
 
 .chat-item:hover{
     background-color: rgb(225, 223, 223);
+    cursor: pointer;
 }
 
 .chat-item:active{
@@ -136,9 +137,10 @@ img{
     align-items: center;
     padding: 15px;
     border-radius: 10px;
+    font-size: 13px;
 }
 
 .sent{
-    background-color: lightgreen;
+    background-color: rgb(213,249,186);
     align-self: flex-end;
 }

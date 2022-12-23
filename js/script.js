@@ -5,6 +5,8 @@ const {
 createApp({
     data(){
         return{
+            timereply: null,
+            newMsg: '',
             activeChat: 0,
             contacts: [
                 {
@@ -174,6 +176,34 @@ createApp({
     methods: {
         changeChat (index){
             this.activeChat = index;
+        },
+        addMsg(index)
+        {
+            let object = {
+                date:"10/01/2020 15:51:00",
+                message: this.newMsg,
+                status: "sent",
+            }
+            let array = this.contacts[index].messages;
+            array.push(object);
+            this.newMsg = '';
+        },
+        addReply(index)
+        {
+            this.newReply = "non posso rispondere ora, ti scrivo più tardi!";
+            let object = {
+                date:"10/01/2020 15:51:00",
+                message: this.newReply,
+                status: "received",
+            }
+            let array = this.contacts[index].messages;
+            array.push(object);
+        },
+        autoReply(index) 
+        {
+            this.timereply = setTimeout(()=>{
+                this.addReply(index)
+            }, 1000);
         },
     }
 }).mount('#app')
