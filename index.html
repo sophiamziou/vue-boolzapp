@@ -93,7 +93,7 @@
                     <div class="row chat">
                         <div class="col">
                             <div class="msg-list p-5">
-                                <div class="msg" v-bind:class="(contacts[activeChat].messages.status == sent) ? 'sent' : ''" v-for="obj in contacts[activeChat].messages">
+                                <div class="msg" v-for="obj in contacts[activeChat].messages" v-bind:class="(obj.status == 'sent') ? 'sent' : ''">
                                     <span>{{obj.message}}</span>
                                 </div>
                             </div>
